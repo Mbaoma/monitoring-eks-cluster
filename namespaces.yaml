@@ -1,0 +1,12 @@
+# for production environment
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+
+# for staging environment
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging

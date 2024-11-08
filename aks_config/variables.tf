@@ -40,3 +40,8 @@ variable "node_pool_test" {
 variable "vm_size_test" {
   default = "Standard_B2als_v2"
 }
+
+#Blob
+variable "storage_account_name" {
+  default = "lok1storage"
+}
