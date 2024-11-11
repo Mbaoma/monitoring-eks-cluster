@@ -27,13 +27,22 @@ resource "azurerm_network_interface" "main" {
   name                = "Monitoring-stack-nic"
   location            = var.resource_group_location
   resource_group_name = var.resource_group_name
-
   ip_configuration {
     name                          = "testconfiguration1"
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.public_ip.id
   }
+}
+
+resource "tls_private_key" "ssh_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "local_file" "ssh_private_key_pem" {
+  content  = tls_private_key.ssh_key.private_key_pem
+  filename = "${path.module}/monitoring-stack.pem"
 }
 
 resource "azurerm_virtual_machine" "main" {
@@ -67,7 +76,12 @@ resource "azurerm_virtual_machine" "main" {
     admin_password = "Password1234!"
   }
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = false #true
+
+    ssh_keys {
+      path     = "/home/testadmin/.ssh/authorized_keys"
+      key_data = tls_private_key.ssh_key.public_key_openssh
+    }
   }
   tags = {
     environment = "staging"
@@ -183,4 +197,9 @@ resource "azurerm_network_security_group" "sg" {
   tags = {
     environment = "staging"
   }
+}
+
+resource "azurerm_network_interface_security_group_association" "nsg" {
+  network_interface_id      = azurerm_network_interface.main.id
+  network_security_group_id = azurerm_network_security_group.sg.id
 }
