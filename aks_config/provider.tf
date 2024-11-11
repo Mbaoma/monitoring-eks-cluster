@@ -9,5 +9,9 @@ terraform {
 
 provider "azurerm" {
   subscription_id = "f8db0501-e2fe-49e4-abfa-e70745b53732"
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false #to delete the reource group regardless if it's empty or not
+    }
+  }
 }
