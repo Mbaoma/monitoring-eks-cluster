@@ -21,9 +21,9 @@
         # Name of the Azure Blob Storage account
         accountName: "lok1storage"
         # Key associated with the Azure Blob Storage account
-        accountKey: "aHkPEcDcfyarXlub/GPm3zBOShQBWl4fP20gyz+wEm255rT5i+5kWJlrjfYt2E7J35hE7M68ygKL+AStF7/tkA=="
+        accountKey: ""
         # Comprehensive connection string for Azure Blob Storage account (Can be used to replace endpoint, accountName, and accountKey)
-        connectionString: "DefaultEndpointsProtocol=https;AccountName=lok1storage;AccountKey=aHkPEcDcfyarXlub/GPm3zBOShQBWl4fP20gyz+wEm255rT5i+5kWJlrjfYt2E7J35hE7M68ygKL+AStF7/tkA==;EndpointSuffix=core.windows.net"
+        connectionString: ""
         # Flag indicating whether to use Azure Managed Identity for authentication
         useManagedIdentity: false
         # Flag indicating whether to use a federated token for authentication
