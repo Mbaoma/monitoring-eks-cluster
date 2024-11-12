@@ -172,20 +172,8 @@ resource "azurerm_network_security_group" "sg" {
   }
 
   security_rule {
-    name                       = "alertmanager_"
-    priority                   = 106
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "9093"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
     name                       = "lokibackend_"
-    priority                   = 107
+    priority                   = 106
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -197,7 +185,7 @@ resource "azurerm_network_security_group" "sg" {
 
   security_rule {
     name                       = "nginx_"
-    priority                   = 108
+    priority                   = 107
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -209,24 +197,12 @@ resource "azurerm_network_security_group" "sg" {
 
   security_rule {
     name                       = "prometheus_"
-    priority                   = 109
+    priority                   = 108
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "9090"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "alertmanager_"
-    priority                   = 110
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "9093"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
