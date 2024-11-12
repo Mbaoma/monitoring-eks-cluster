@@ -42,3 +42,6 @@ The end result will be multiple Loki data sources feeding logs to a central Graf
 
 ## setup
 Check the ```monitoring_stack``` folder.
+
+
+password - Monitoring1.
